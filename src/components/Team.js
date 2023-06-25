@@ -1,15 +1,73 @@
 import React from 'react';
 
-const Team = ({ team }) => {
+const Team = ({ team, selectedTeamBox, onSelectTeamBox, onDeletePlayer }) => {
+  const positions = ['GK', 'ST', 'MD', 'DF', 'ST, MD or DF'];
+
+  const handleDeletePlayer = (index) => {
+    onDeletePlayer(index);
+  };
+
+  const handleSelectTeamBox = (index) => {
+    onSelectTeamBox(index);
+  };
+
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  };
+
+  const teamBoxContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+  };
+
+  const teamBoxStyle = {
+    width: '100px',
+    height: '100px',
+    backgroundColor: 'lightgray',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '10px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    border: selectedTeamBox === null ? 'none' : '1px solid black',
+  };
+
+  const positionTextStyle = {
+    fontWeight: 'bold',
+    textAlign: 'center',
+  };
+
   return (
     <div>
       <h2>Your Team:</h2>
-      {team.map((player, index) => (
-        <div key={index}>
-          <h2>{player.character.name}</h2>
-          <p>Position: {player.position}</p>
+      <div style={containerStyle}>
+        <div style={teamBoxContainerStyle}>
+          {positions.map((position, index) => (
+            <div key={index}>
+              <div style={positionTextStyle}>{position}</div>
+              <div
+                style={teamBoxStyle}
+                onClick={() => handleSelectTeamBox(index)}
+              >
+                {team[index] && team[index].character.thumbnail ? (
+                  <img
+                    src={`${team[index].character.thumbnail.path}.${team[index].character.thumbnail.extension}`}
+                    alt={team[index].character.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                  />
+                ) : null}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

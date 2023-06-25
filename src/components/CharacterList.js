@@ -23,8 +23,15 @@ const CharacterList = ({ onAddToTeam }) => {
     fetchCharacters();
   }, []);
 
+  const containerStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'left',
+
+  };
+
   return (
-    <div>
+    <div style={containerStyle}>
       {characters.map((character) => (
         <Character
           key={character.id}
