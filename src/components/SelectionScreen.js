@@ -99,7 +99,7 @@ const SelectionScreen = () => {
       <button onClick={handleNextStage} disabled={currentStage >= stages.length - 1}>
         Next Stage
       </button>
-      <Link to="/results">Go to Results</Link>
+      <Link to="/marvel-team-selector/results">Go to Results</Link>
     </div>
   );
 };

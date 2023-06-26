@@ -50,7 +50,7 @@ const WelcomeScreen = () => {
         You've been selected to comprise the best 5-a-side football team using your extensive knowledge of Marvel characters. Are you up for the challenge?
       </p>
       <Link
-        to="/selection"
+        to="/marvel-team-selector/selection"
         style={startButtonStyle}
         activeStyle={startButtonHoverStyle}
       >

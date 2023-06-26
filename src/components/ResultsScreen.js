@@ -5,7 +5,7 @@ const ResultsScreen = () => {
   return (
     <div>
       <h1>Results Screen</h1>
-      <Link to="/">Go to Welcome</Link>
+      <Link to="/marvel-team-selector">Go to Welcome</Link>
     </div>
   );
 };
