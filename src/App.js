@@ -33,8 +33,8 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/marvel-team-selector" element={<WelcomeScreen />} />
-        <Route path="/selection" element={<SelectionScreen />} />
-        <Route path="/results" element={<ResultsScreen />} />
+        <Route path="/marvel-team-selector/selection" element={<SelectionScreen />} />
+        <Route path="/marvel-team-selector/results" element={<ResultsScreen />} />
       </Routes>
     </Router>
   );
