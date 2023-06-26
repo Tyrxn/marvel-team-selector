@@ -15,10 +15,18 @@ const Team = ({ team, selectedTeamBox, onSelectTeamBox, onDeletePlayer }) => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: '50px',
+    border: '1px solid black', 
+    padding: '10px',
+    width: '35%', 
+    height: '100%', 
+    boxSizing: 'border-box', 
   };
+  
 
   const teamBoxContainerStyle = {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
   };
 
@@ -42,31 +50,29 @@ const Team = ({ team, selectedTeamBox, onSelectTeamBox, onDeletePlayer }) => {
   };
 
   return (
-    <div>
+    <div style={containerStyle}>
       <h2>Your Team:</h2>
-      <div style={containerStyle}>
-        <div style={teamBoxContainerStyle}>
-          {positions.map((position, index) => (
-            <div key={index}>
-              <div style={positionTextStyle}>{position}</div>
-              <div
-                style={teamBoxStyle}
-                onClick={() => handleSelectTeamBox(index)}
-              >
-                {team[index] && team[index].character.thumbnail ? (
-                  <img
-                    src={`${team[index].character.thumbnail.path}.${team[index].character.thumbnail.extension}`}
-                    alt={team[index].character.name}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}
-                  />
-                ) : null}
-              </div>
+      <div style={teamBoxContainerStyle}>
+        {positions.map((position, index) => (
+          <div key={index}>
+            <div style={positionTextStyle}>{position}</div>
+            <div
+              style={teamBoxStyle}
+              onClick={() => handleSelectTeamBox(index)}
+            >
+              {team[index] && team[index].character.thumbnail ? (
+                <img
+                  src={`${team[index].character.thumbnail.path}.${team[index].character.thumbnail.extension}`}
+                  alt={team[index].character.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              ) : null}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

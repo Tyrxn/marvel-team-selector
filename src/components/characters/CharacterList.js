@@ -28,24 +28,40 @@ const CharacterList = ({ onAddToTeam }) => {
       console.log('Error searching characters:', error);
     }
   };
-
+  
   const containerStyle = {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'left',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '50px',
+    border: '1px solid black', 
+    padding: '10px',
+    width: '35%', 
+    height: '100%', 
+    boxSizing: 'border-box', 
+  };
+  
+
+  
+
+  const searchStyle = {
+    width: '95%',
+    minHeight: '30px',
+    padding: '5px'
   };
 
   return (
-    <div>
-      <div style={{ marginBottom: '10px' }}>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          placeholder="Search character..."
-        />
-      </div>
-      <div style={containerStyle}>
+    <div style={containerStyle}>
+      <div style = {searchStyle}>
+        <div style={{ marginBottom: '10px' }}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="Search for a Marvel character..."
+            style={searchStyle}
+          />
+        </div>
         {characters.map((character) => (
           <Character
             key={character.id}
