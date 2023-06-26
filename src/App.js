@@ -32,7 +32,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/marvel-team-selector" element={<WelcomeScreen />} />
         <Route path="/selection" element={<SelectionScreen />} />
         <Route path="/results" element={<ResultsScreen />} />
       </Routes>
