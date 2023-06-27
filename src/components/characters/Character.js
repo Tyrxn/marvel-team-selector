@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Character = ({ character, selectForTeam }) => {
+  const [selected, setSelected] = useState(false);
+
   const handleClick = () => {
     selectForTeam(character);
+    setSelected(!selected);
   };
 
   const containerStyle = {
     display: 'flex',
     cursor: 'pointer',
     marginBottom: '10px',
+    backgroundColor: selected ? 'gray' : 'transparent',
   };
 
   const thumbnailStyle = {
@@ -33,7 +37,10 @@ const Character = ({ character, selectForTeam }) => {
   };
 
   return (
-    <div style={containerStyle} onClick={handleClick}>
+    <div
+      style={containerStyle}
+      onClick={handleClick}
+    >
       <img
         src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
         alt={character.name}
@@ -41,14 +48,14 @@ const Character = ({ character, selectForTeam }) => {
       />
       <div style={contentStyle}>
         <div style={nameStyle}>{character.name}</div>
-          <div style={comicsStyle}>
-            <p>
-              {character.comics.items
-                .slice(0, 5)
-                .map((comic, index) => comic.name)
-                .join(', ')}
-            </p>
-          </div>
+        <div style={comicsStyle}>
+          <p>
+            {character.comics.items
+              .slice(0, 5)
+              .map((comic, index) => comic.name)
+              .join(', ')}
+          </p>
+        </div>
       </div>
     </div>
   );
