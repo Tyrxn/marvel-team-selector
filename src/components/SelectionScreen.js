@@ -34,14 +34,17 @@ const SelectionScreen = () => {
   };
 
   const handleAddToTeam = (character) => {
-    setTeam(prevTeam => {
-      const newTeam = [...prevTeam];
-      newTeam[currentTeamPosition] = { character };
-      return newTeam;
-    });
-
-    handleNextStage();
+    if (currentTeamPosition < stages.length) {
+      setTeam(prevTeam => {
+        const newTeam = [...prevTeam];
+        newTeam[currentTeamPosition] = { character };
+        return newTeam;
+      });
+  
+      handleNextStage();
+    }
   };
+  
 
   const progressBarContainerStyle = {
     width: '70%',
@@ -95,13 +98,38 @@ const SelectionScreen = () => {
     padding: '10px',
   };
 
-  const nextButtonStyle = {
-    backgroundColor: 'white',
-    color: 'black',
-    padding: '10px',
-    borderRadius: '5px',
-    textDecoration: 'none',
+  const navbarEmptyStyle = {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    backgroundColor: 'black',
+    color: 'white',
+    padding: '30px',
   };
+
+  const nextButtonStyle = {
+    display: 'inline-block',
+    padding: '10px 20px',
+    backgroundColor: '#333',
+    color: '#fff',
+    textDecoration: 'none',
+    border: 'none',
+    borderRadius: '4px',
+    transition: 'background-color 0.3s',
+    cursor: 'pointer',
+    visibility: team.every(position => position !== null) ? 'visible' : 'hidden',
+  };
+
+  const headerStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+
+  const listStyle = {
+    textAlign: 'center',
+    justifyContent: 'center'
+  }
+
+
 
   return (
     <div>
@@ -133,22 +161,31 @@ const SelectionScreen = () => {
           </div>
         </>
       )}
-      {showTeam && ( // Render the team screen after Next button is clicked
-        <div>
-          <h2>Your Team:</h2>
-          {team.map((member, index) => (
-            member && member.character && (
-              <div key={index}>
-                <h3>{stages[index]}: {member.character.name}</h3>
-              </div>
-            )
-          ))}
-          <button onClick={() => {}}>Share to Facebook</button>
-          <Link to="/marvel-team-selector">Select New Team</Link>
-        </div>
+      {showTeam && ( 
+        <>
+          <div style={navbarEmptyStyle}>
+            
+          </div>
+          <div style = {headerStyle}><h2>YOUR TEAM</h2></div>
+          <div style = {listStyle}>
+            {team.map((member, index) => (
+              member && member.character && (
+                <div key={index}>
+                  <h3>{stages[index]}: {member.character.name}</h3>
+                </div>
+              )
+            ))}
+
+            <Link to="/marvel-team-selector" style={nextButtonStyle}>Select New Team</Link>
+          </div>
+          <div>
+            
+          </div>
+        </>
       )}
     </div>
   );
+  
 };
 
 export default SelectionScreen;
