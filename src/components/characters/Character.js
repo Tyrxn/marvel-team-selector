@@ -7,6 +7,7 @@ const Character = ({ character, selectForTeam }) => {
 
   const containerStyle = {
     display: 'flex',
+    //alignItems: 'center',
     cursor: 'pointer',
     marginBottom: '10px',
   };

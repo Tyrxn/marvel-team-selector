@@ -34,11 +34,9 @@ const CharacterList = ({ onAddToTeam }) => {
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '50px',
-    border: '1px solid black', 
     padding: '10px',
     width: '35%', 
     height: '100%', 
-    boxSizing: 'border-box', 
   };
   
 
