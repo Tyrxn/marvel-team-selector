@@ -35,7 +35,7 @@ const CharacterList = ({ onAddToTeam }) => {
     alignItems: 'center',
     marginTop: '50px',
     padding: '10px',
-    width: '35%', 
+    width: '50%', 
     height: '100%', 
   };
   

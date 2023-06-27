@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Team = ({ team }) => {
+const Team = ({ team, showTeam }) => {
   const positions = ['GK', 'ST', 'MD', 'DF', 'ST, MD or DF'];
 
   const containerStyle = {
@@ -9,24 +9,19 @@ const Team = ({ team }) => {
     alignItems: 'center',
     marginTop: '50px',
     padding: '10px',
-    width: '35%', 
-    height: '100%', 
+    height: '100%',
   };
 
-  const teamBoxContainerStyle = {
+  const teamMemberContainerStyle = {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  };
-
-  const teamBoxStyle = {
-    width: '100px',
-    height: '100px',
-    backgroundColor: 'lightgray',
-    display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
     margin: '10px',
+  };
+
+  const teamMemberStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '10px',
     fontSize: '16px',
     fontWeight: 'bold',
   };
@@ -38,28 +33,31 @@ const Team = ({ team }) => {
 
   return (
     <div style={containerStyle}>
-      <h2>Your Team:</h2>
-      <div style={teamBoxContainerStyle}>
-        {positions.map((position, index) => (
-          <div key={index}>
-            <div style={positionTextStyle}></div>
-            {team[index] && team[index].character.thumbnail ? (
-              <div style={teamBoxStyle}>
-                <img
-                  src={`${team[index].character.thumbnail.path}.${team[index].character.thumbnail.extension}`}
-                  alt={team[index].character.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    
-                  }}
-                />
-                
+      {showTeam && ( // Render the team only when showTeam is true
+        <>
+          <h2>Your Team:</h2>
+          {team.map((member, index) => (
+            <div key={index} style={teamMemberContainerStyle}>
+              {member && member.character && member.character.thumbnail ? (
+                <div>
+                  <img
+                    src={`${member.character.thumbnail.path}.${member.character.thumbnail.extension}`}
+                    alt={member.character.name}
+                    style={{
+                      width: '100px',
+                      height: '100px',
+                      backgroundColor: 'lightgray',
+                    }}
+                  />
+                </div>
+              ) : null}
+              <div style={teamMemberStyle}>
+                {positions[index]}: {member && member.character && member.character.name}
               </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import CharacterList from './components/characters/CharacterList';
 import Team from './components/characters/Team';
 import WelcomeScreen from './components/WelcomeScreen';
 import SelectionScreen from './components/SelectionScreen';
-import ResultsScreen from './components/ResultsScreen';
 
 const App = () => {
   const [team, setTeam] = useState([]);
@@ -34,7 +33,6 @@ const App = () => {
       <Routes>
         <Route path="/marvel-team-selector" element={<WelcomeScreen />} />
         <Route path="/marvel-team-selector/selection" element={<SelectionScreen />} />
-        <Route path="/marvel-team-selector/results" element={<ResultsScreen />} />
       </Routes>
     </Router>
   );
