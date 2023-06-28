@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Team = ({ team, showTeam }) => {
-  const positions = ['GK', 'ST', 'MD', 'DF', 'ST, MD or DF'];
 
   const containerStyle = {
     display: 'flex',
@@ -26,14 +25,11 @@ const Team = ({ team, showTeam }) => {
     fontWeight: 'bold',
   };
 
-  const positionTextStyle = {
-    fontWeight: 'bold',
-    textAlign: 'center',
-  };
+
 
   return (
     <div style={containerStyle}>
-      {showTeam && ( // Render the team only when showTeam is true
+      {showTeam && ( 
         <>
           <h2>Your Team:</h2>
           {team.map((member, index) => (
@@ -52,7 +48,7 @@ const Team = ({ team, showTeam }) => {
                 </div>
               ) : null}
               <div style={teamMemberStyle}>
-                {positions[index]}: {member && member.character && member.character.name}
+                {member && member.character && member.character.name}
               </div>
             </div>
           ))}

@@ -9,16 +9,15 @@ const SelectionScreen = () => {
   const [currentTeamPosition, setCurrentTeamPosition] = useState(0);
   const [team, setTeam] = useState([null, null, null, null, null]);
   const [selectedTeamBox, setSelectedTeamBox] = useState(0);
-  const [position, setPosition] = useState(stages[0]);
-  const [showTeam, setShowTeam] = useState(false); // State variable to control team visibility
+  const [showTeam, setShowTeam] = useState(false); 
 
   const handleResultsPage = () => {
-    setShowTeam(true); // Show team when Next button is clicked
+    setShowTeam(true); 
   };
 
   const handleSelectTeamBox = (index) => {
     setSelectedTeamBox(index);
-    setPosition(stages[index]);
+
   };
 
   const handleDeletePlayer = (index) => {
@@ -133,7 +132,7 @@ const SelectionScreen = () => {
 
   return (
     <div>
-      {!showTeam && ( // Render the selection screen until Next button is clicked
+      {!showTeam && ( 
         <>
           <div style={navbarStyle}>
             <button onClick={handleResultsPage} style={nextButtonStyle}>
@@ -150,7 +149,12 @@ const SelectionScreen = () => {
               </div>
             ))}
           </div>
+          <div style = {mainContainerStyle}>
+            {currentTeamPosition < stages.length && <h1>CHOOSE A {stages[currentTeamPosition].toUpperCase()}</h1>}
+          </div>
+
           <div style={mainContainerStyle}>
+            
             <CharacterList onAddToTeam={handleAddToTeam} />
             <Team
               team={team}
@@ -161,25 +165,25 @@ const SelectionScreen = () => {
           </div>
         </>
       )}
-      {showTeam && ( 
+        {showTeam && ( 
         <>
-          <div style={navbarEmptyStyle}>
-            
-          </div>
+          <div style={navbarEmptyStyle}></div>
           <div style = {headerStyle}><h2>YOUR TEAM</h2></div>
+          
           <div style = {listStyle}>
             {team.map((member, index) => (
               member && member.character && (
                 <div key={index}>
+                  <img
+                    src={`${member.character.thumbnail.path}.${member.character.thumbnail.extension}`}
+                    alt={member.character.name}
+                    style={{ width: '100px', height: 'auto', marginRight: '10px' }}
+                  />
                   <h3>{stages[index]}: {member.character.name}</h3>
                 </div>
               )
             ))}
-
             <Link to="/marvel-team-selector" style={nextButtonStyle}>Select New Team</Link>
-          </div>
-          <div>
-            
           </div>
         </>
       )}
